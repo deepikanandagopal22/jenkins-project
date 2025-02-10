@@ -1,35 +1,10 @@
 pipeline {
-    agent any
-    stages {
-        stage('Clone Repository') {
+    agent any 
+        stages('Email Jenkins pipeline') {
+            stage('test email') {
             steps {
-                git 'https://github.com/deepikanandagopal22/jenkins-project.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building the application...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-            }
-        }
-    }
-    post {
-        always {
-            emailext subject: "Jenkins Build Notification: ${currentBuild.fullDisplayName}",
-                body: "Build ${currentBuild.result}: Check the console output at ${env.BUILD_URL}",
-                to: 'deeps1998nanda@gmail.com',
-                from: 'jenkins@example.com'
-        }
-    }
+                mail bcc: '', body: 'Hello, This is an email from jenkins pipeline.', cc: '', from: '', replyTo: '', subject:'EmailJenkinsPipeline', to: 'deeps1998nanda@gmail.com'
+            }      }
 }
-
-
+}
+ 
